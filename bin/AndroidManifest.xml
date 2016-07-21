@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Author: Jelle Geerts
+
+Usage of the works is permitted provided that this instrument is
+retained with the works, so that any entity that uses the works is
+notified of this instrument.
+
+DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
+-->
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="bughunter2.smsfilter"
+    android:versionCode="4"
+    android:versionName="1.3"
+    android:installLocation="internalOnly" >
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:allowBackup="true" >
+
+        <receiver android:name="rabiul.cu.cse.SMSReceiver">
+            <!-- "android:priority" may never be equal to or higher than SYSTEM_HIGH_PRIORITY (1000) -->
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="rabiul.cu.cse.UI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="rabiul.cu.cse.FilterList" />
+        <activity
+            android:name="rabiul.cu.cse.FilterForm"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name="rabiul.cu.cse.MessageList" />
+        <activity android:name="rabiul.cu.cse.MessageViewer" />
+
+    </application>
+
+</manifest>
